@@ -15,9 +15,18 @@ public class CustomerOrder implements Serializable {
 	private Map<String, OrderDish> dishes;
 	private String restaurantId;	
 	private String orderId; //Giving an order id so that the communication between the Restaurant and Client can happen.
+	private int subOrderId;
 	private String customerId; //Customer ID same as parse object id.
 	private String tableId;
 	private String orderNote;
+	
+	public int getSubOrderId() {
+		return subOrderId;
+	}
+
+	public void setSubOrderId(int subOrderId) {
+		this.subOrderId = subOrderId;
+	}
 
 	public CustomerOrder(Map<String, OrderDish> dishes, String restaurantId,
 			String orderId, String customerId, String tableId, String orderNote) {
@@ -29,6 +38,8 @@ public class CustomerOrder implements Serializable {
 		this.tableId = tableId;
 		this.orderNote = orderNote;
 	}	
+	
+	public CustomerOrder(){}
 
 	public String getCustomerId() {
 		return customerId;

@@ -8,7 +8,22 @@ public class OrderedDish {
 	private float price;
 	private FoodType type;
 	private float quatity;
+	private String dishNote;
+	private String spiceLevel;
 	
+	public String getDishNote() {
+		return dishNote;
+	}
+	public void setDishNote(String dishNote) {
+		this.dishNote = dishNote;
+	}
+	
+	public String getSpiceLevel() {
+		return spiceLevel;
+	}
+	public void setSpiceLevel(String spiceLevel) {
+		this.spiceLevel = spiceLevel;
+	}
 	public String getDishId() {
 		return dishId;
 	}
