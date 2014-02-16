@@ -20,6 +20,7 @@ public class RestaurantDashboardData {
 	 * 	
 	 */
 	Map<String, Integer> tableInformation;
+	private String restId;
 
 	/*
 	 * Json of List<RestaurantOrder>.
@@ -54,5 +55,13 @@ public class RestaurantDashboardData {
 		Gson gs = new Gson();
 		rdd.setOrders(gs.toJson(list));
 		return rdd;
+	}
+
+	public String getRestId() {
+		return restId;
+	}
+
+	public void setRestId(String restId) {
+		this.restId = restId;
 	}
 }
