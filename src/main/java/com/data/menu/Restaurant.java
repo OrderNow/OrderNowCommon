@@ -14,9 +14,9 @@ public class Restaurant {
 	private String name;
 	private String address;
 	private String contactInfo;
-
 	private Menu menu;
 	private Map<String, Integer> tableInformation;
+
 
 	public static HashMap<String, Restaurant> _cache = new HashMap<String, Restaurant>();
 
