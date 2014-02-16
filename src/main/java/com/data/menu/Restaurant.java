@@ -2,10 +2,13 @@ package com.data.menu;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 
+import com.data.menu.filter.MenuPropertyKey;
+import com.data.menu.filter.MenuPropertyValue;
 import com.database.DataConnection;
 
 public class Restaurant {
@@ -16,6 +19,7 @@ public class Restaurant {
 	private String contactInfo;
 	private Menu menu;
 	private Map<String, Integer> tableInformation;
+	private Map<MenuPropertyKey, List<MenuPropertyValue>> availableFilters;
 
 
 	public static HashMap<String, Restaurant> _cache = new HashMap<String, Restaurant>();
@@ -92,5 +96,19 @@ public class Restaurant {
 		_cache.put(getrId(), this);
 		DataConnection.setRestaurantDataToDB(this, debugger);
 
+	}
+
+	public Map<MenuPropertyKey, List<MenuPropertyValue>> getAvailableFilters() {
+		return availableFilters;
+	}
+
+	public void setAvailableFilters(
+			Map<MenuPropertyKey, List<MenuPropertyValue>> availableFilters) {
+		this.availableFilters = availableFilters;
+	}
+
+	@Override
+	public String toString() {
+		return "Res = " + name + " " + menu.toString();
 	}
 }
