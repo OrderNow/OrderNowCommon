@@ -94,12 +94,12 @@ public class RestaurantOrder {
 	public static synchronized ArrayList<RestaurantOrder> getOrdersFronDB(
 			String restaurantId, String state, ServletOutputStream debugger)
 			throws IOException {
+		System.out.println("Called");
 		ArrayList<RestaurantOrder> restOrder = DataConnection.getCurrentOrders(
 				restaurantId, state, debugger);
 		for (RestaurantOrder order : restOrder) {
-			tableRestOrderID_cache.put(
-					new Pair(order.getTableId(), order.getRestaurantId()),
-					order.getOrderId());
+			Pair key = new Pair(order.getTableId(), order.getRestaurantId());
+			tableRestOrderID_cache.put(key, order.getOrderId());
 		}
 		return restOrder;
 	}
@@ -147,4 +147,37 @@ class Pair {
 	public void setRestaurantId(String restaurantId) {
 		this.restaurantId = restaurantId;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((restaurantId == null) ? 0 : restaurantId.hashCode());
+		result = prime * result + ((tableId == null) ? 0 : tableId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pair other = (Pair) obj;
+		if (restaurantId == null) {
+			if (other.restaurantId != null)
+				return false;
+		} else if (!restaurantId.equals(other.restaurantId))
+			return false;
+		if (tableId == null) {
+			if (other.tableId != null)
+				return false;
+		} else if (!tableId.equals(other.tableId))
+			return false;
+		return true;
+	}
+
 }
