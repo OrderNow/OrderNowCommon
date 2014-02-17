@@ -423,9 +423,22 @@ public class DataConnection {
 			return false;
 	}
 
+	public static String getOrderId(String tableId, String restaurantId) {
+		String orderId = null;
+		BasicDBObject bdo = new BasicDBObject();
+		bdo.put(UrlParameter.RESTAURNAT_ID.toString(), restaurantId);
+		bdo.put(UrlParameter.TABLE_ID.toString(), tableId);
+		DBObject obj = current_orders.findOne(bdo);
+
+		if (obj != null)
+			orderId = (String) obj.get(UrlParameter.ORDER_ID.toString());
+		return orderId;
+	}
+
 	public static void main(String[] args) throws IOException, JSONException {
 
 		System.out.println(DataConnection.encodeString("test123"));
 
 	}
+
 }
